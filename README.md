@@ -10,3 +10,14 @@ Learning about testing with playwright (API and UI testings)
 3. Gives you confidence to refactor and improve the code.
 
    
+
+```text
+               /   \
+              /     \
+             / E2E   \
+            /---------\
+           /Integration\
+          /-------------\
+         / Unit Testing  \
+        /________________ \
+```
