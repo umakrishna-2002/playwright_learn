@@ -89,7 +89,25 @@ We'll test - is the response correct?
 - is the status code right?
 - is the returned response body valid?
 
+Example for checking the API (POST Method):
 
+- Where to send the data, format or body of the data. Telling what type of data server expect.
+- And checking if the server responded correctly.
+ 
+-------------------------------------------------------------
+
+It dosen't only check the happy path (Success path).
+
+- The Negative Path (Validation): If you leave out a required field (e.g., sending a blank email), does the API correctly reject it with a 400 Bad Request
+
+- The Security Path (Authentication): If someone tries to hit this endpoint without a valid API key or token, does it return 401 Unauthorized.
+
+
+**Data Driven Testing**: writing the test logic once Passing different scenarios into it.
+
+Testing these scenarios at the API level instead of UI or Postman, ensures that the backend database remains secure and clean, no matter how the data is sent
+
+ 
 
 
 
