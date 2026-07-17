@@ -59,4 +59,26 @@ Playwright strictly follows **Naming Rules**
 **Playwright with Pytest**: way to write E2E browser automation tests in python. 
 
 
+<ins>Creating Project structure for testing Framework. </ins>
+
+- Create folders (Project folders).
+- Check all the required libraries were installed (pip list).
+- Go to the project folder and create subfolders i.e.,(tests, pages, utils, reports).
+- Create main file in root folder for example main.py.
+- Create requirements.txt, so that others can install packages easily.
+
+<ins> Page Object Model [POM] </ins>
+
+A design pattern used in test automation, helps in writing clean, reusable and maintainable test code.
+
+Each WebPage= One class(loginPage, Home Page)
+
+Those classes contains (Locators, Actions)
+
+**Locators**: How to fond the elements of the page (buttons, inputs)
+
+**Actions**: What can you do (click, select).
+
+
+
 
