@@ -1,0 +1,26 @@
+[
+  {
+    "scenario": "Blank Name Validation",
+    "payload": {"name": "", "email": "test@gmail.com", "password": "123", "retype_password": "123"},
+    "expected_status": 400,
+    "expected_error": "Name cannot be blank"
+  },
+  {
+    "scenario": "Wrong Email Format Validation",
+    "payload": {"name": "Uma", "email": "test@yahoo.com", "password": "123", "retype_password": "123"},
+    "expected_status": 400,
+    "expected_error": "Invalid Gmail format"
+  },
+  {
+    "scenario": "Mismatched Passwords Validation",
+    "payload": {"name": "Uma", "email": "uma@gmail.com", "password": "123", "retype_password": "456"},
+    "expected_status": 400,
+    "expected_error": "Passwords do not match"
+  },
+  {
+    "scenario": "Successful Registration Happy Path",
+    "payload": {"name": "Umakrishna", "email": "umakrishna@gmail.com", "password": "SecurePassword!", "retype_password": "SecurePassword!"},
+    "expected_status": 201,
+    "expected_error": null
+  }
+]
