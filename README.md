@@ -81,4 +81,16 @@ Those classes contains (Locators, Actions)
 
 
 
+<ins> API Testing </ins>
+
+-> Sending the requests to the backend server or the application and verfying the response (status code, body, header).
+
+We'll test - is the response correct?
+- is the status code right?
+- is the returned response body valid?
+
+
+
+
+
 
