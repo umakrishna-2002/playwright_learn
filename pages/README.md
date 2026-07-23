@@ -1,0 +1,1 @@
+- Writing all the test cases in /pages folder for the applications
