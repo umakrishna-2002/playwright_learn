@@ -12,3 +12,9 @@ Why to use Data Driven Testing?
 - Write the request logic once and run it against 100 different inputs or scenario's.
 - Coverage: Easily add new edge cases (e.g., special characters, long strings, null values) just by adding a new line to your JSON file
 - Playwright treats every item in the loop as an independent test, making it clear exactly which data set failed if something breaks.
+
+
+Playwright can function as an API automation controller by using its built-in <b>APIRequestContext</b>.
+
+API testing is Data Centric: API controller returns status code (200k OK, 201 Created) and raw JSON blobs.
+
