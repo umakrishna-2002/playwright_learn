@@ -107,7 +107,26 @@ It dosen't only check the happy path (Success path).
 
 Testing these scenarios at the API level instead of UI or Postman, ensures that the backend database remains secure and clean, no matter how the data is sent
 
- 
 
+Core Architecture & Contexts (API):
+
+- <b>APIRequestContext</b> This is Playwright's built-in HTTP client class responsible for sending requests (get, post, put, delete).
+- The {request} Fixture: Inside standard test files, Playwright provides "request" automatically. You don't need to manually create network connections or launch the browsers.
+
+
+<b> Automatic Data Serialization & Headers </b>
+
+Playwright eliminates repetitive boilerplate when handling HTTP payloads:
+
+- Automatic JSON Stringify: Passing a JavaScript object to <b>data: {key: 'value' </b> automatically converts it to a JSON string.
+- Implicit Headers: When using <b>data</b> option, Playwright automatically sets <b> 'Content-Type': 'application/json'</b> unless specified otherwise.
+- Form Submissions: Passing an object to form: {....} automatically encodes it as <b>application/x-www-form-urlencoded </b> 
+
+ 
+<b> Recommended Design Patterns </b>
+
+- API Controller Pattern: Keeps the tests organized by encapsulating base URLs, endpoint routes, and request parameters inside dedicated class methods.
+- Data-Driven Testing (DDT): Reading payloads from external JSON files and looping over them to generate dynamic test iterations.
+- Global Configuration: Defining <b>BaseURL </b> and <b>extraHTTPHeaders</b> 
 
 
