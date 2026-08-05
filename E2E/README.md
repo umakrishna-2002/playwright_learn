@@ -46,4 +46,8 @@ Alert Listener: Sets up an event listener (page.once('dialog', ...)). If a brows
 Submit Payment: Calls checkoutPage.completePayment() to type the payment details into the form and submit the order.
 
 - Final Redirection Assertion
-Final Assertion: Asserts that after checkout completes, the web application redirects the user back to the ${APP_URL}/catalog page. 
+Final Assertion: Asserts that after checkout completes, the web application redirects the user back to the ${APP_URL}/catalog page.
+
+
+
+$$\text{Reset DB (API)} \rightarrow \text{Register} \rightarrow \text{Login} \rightarrow \text{Add Item to Cart} \rightarrow \text{Checkout} \rightarrow \text{Pay} \rightarrow \text{Verify Return to Catalog}$$
