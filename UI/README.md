@@ -34,3 +34,9 @@ How it works?
       page.locator('#candidatePortfolioLink').click(),
     ]);
  ```       
+
+Two parallel actions, one event: You're setting up the listener (waitForEvent) before triggering the user action (click). Promise.all binds them together so Playwright never misses the event due to a race condition.
+
+Same Browser Context: context.waitForEvent('page') listens for tabs within the same browser context, which is why your authentication state (auth.json) automatically transfers over to the new tab without requiring another login.
+
+The "Radar" Analogy: Calling waitForEvent sets up Playwright's listener radar. When the click fires and the browser emits the event (whether it's page, download, or dialog), the radar catches it and assigns the resulting object (newPage, download, etc.) directly to your variable.
