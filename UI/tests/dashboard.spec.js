@@ -13,8 +13,9 @@ test.describe('HR Actions Suite (POM)', () => {
     await expect(page.getByText('David Warner')).toBeVisible();
 
     // 2. Setup dialog handler and Delete via POM action
-    page.on('dialog', async (dialog) => await dialog.accept());
+    
     await dashboardPage.deleteEmployee('David Warner');
+    page.on('dialog', async (dialog) => await dialog.accept());
 
     // 3. Verify deletion
     await expect(page.getByText('David Warner')).not.toBeVisible();
