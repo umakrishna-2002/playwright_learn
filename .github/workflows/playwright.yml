@@ -26,14 +26,14 @@ jobs:
       - name: Install Dependencies
         run: npm install
 
-      - name: Install Playwright Browsers & Dependencies
-        run: npx playwright install --with-deps
+      - name: Install Playwright Browsers 
+        run: npx playwright chromium install --with-deps
 
       - name: Start Backend Server & Run Tests
         run: |
           npm start &
-          npx --yes wait-on http://localhost:3000
-          npx playwright test tests/api-upload.spec.js
+          npx --yes wait-on http://localhost:3000 --timeout 10000
+          npx playwright test tests/api-upload.spec.js 
 
       - name: Upload Test Report Artifact
         if: always()
