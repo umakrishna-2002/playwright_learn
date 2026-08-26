@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>HR Portal - Reports</title>
+    <link rel="stylesheet" href="/style.css">
+    <style>
+        .upload-section {
+            margin-top: 24px;
+            padding-top: 20px;
+            border-top: 1px solid #ddd;
+        }
+        .form-group {
+            margin-bottom: 16px;
+        }
+        .status-msg {
+            margin-top: 12px;
+            font-weight: bold;
+        }
+        .success { color: #28a745; }
+        .error { color: #dc3545; }
+    </style>
+</head>
+<body>
+    <div class="navbar">
+        <h2>HR Reports</h2>
+        <div>
+            <a href="/dashboard.html">Dashboard</a>
+        </div>
+    </div>
+
+    <div class="container">
+        <h3>Payroll & Analytics Reports</h3>
+        <p>Download monthly organization records in CSV format.</p>
+        <button id="downloadPayrollBtn" onclick="window.location.href='/api/export/payroll'">
+            Download Payroll Report (CSV)
+        </button>
+
+        <!-- ➕ NEW: Upload Employee Documents Section -->
+        <div class="upload-section">
+            <h3>Upload Employee Documents</h3>
+            <p>Upload resumes, contracts, or tax documents (.pdf, .txt, .csv).</p>
+
+            <form id="uploadForm">
+                <div class="form-group">
+                    <input type="file" id="documentInput" name="file" required />
+                </div>
+                <button type="submit" id="uploadBtn">Upload Document</button>
+            </form>
+
+            <div id="uploadStatus" class="status-msg"></div>
+        </div>
+    </div>
+
+    <script>
+        document.getElementById('uploadForm').addEventListener('submit', async (e) => {
+            e.preventDefault();
+
+            const fileInput = document.getElementById('documentInput');
+            const statusDiv = document.getElementById('uploadStatus');
+
+            if (!fileInput.files[0]) {
+                statusDiv.className = 'status-msg error';
+                statusDiv.innerText = 'Please select a file to upload.';
+                return;
+            }
+
+            const formData = new FormData();
+            formData.append('file', fileInput.files[0]);
+
+            try {
+                const response = await fetch('/api/upload', {
+                    method: 'POST',
+                    body: formData
+                });
+
+                const result = await response.json();
+
+                if (response.ok) {
+                    statusDiv.className = 'status-msg success';
+                    statusDiv.innerText = `Upload Successful! File ID: ${result.documentId}`;
+                    fileInput.value = ''; // Clear input field
+                } else {
+                    statusDiv.className = 'status-msg error';
+                    statusDiv.innerText = result.error || 'Upload failed.';
+                }
+            } catch (err) {
+                statusDiv.className = 'status-msg error';
+                statusDiv.innerText = 'Server communication error.';
+            }
+        });
+    </script>
+</body>
+</html>
