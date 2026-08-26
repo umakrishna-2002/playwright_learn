@@ -17,23 +17,18 @@ jobs:
       - name: Setup Node.js
         uses: actions/setup-node@v4
         with:
-          node-version: 20
+          node-version: 22
           cache: 'npm'
           cache-dependency-path: E2E/package-lock.json
 
       - name: Install Dependencies
-        run: |
-          cd E2E
-          npm ci
+        run: npm ci
 
-      - name: Install Playwright Browsers & Dependencies
-        run: |
-          cd E2E
-          npx playwright install --with-deps
+        - name: Install Playwright Browsers & Dependencies
+        run: npx playwright install --with-deps
 
       - name: Start Backend Server & Run Tests
         run: |
-          cd E2E
           npm start &
           npx wait-on http://localhost:3000
           npx playwright test tests/api-upload.spec.js
@@ -45,3 +40,6 @@ jobs:
           name: playwright-report
           path: E2E/playwright-report/
           retention-days: 7
+        
+
+    
